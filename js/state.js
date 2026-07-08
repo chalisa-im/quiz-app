@@ -13,6 +13,7 @@ const ICONS = {
 };
 
 let allData = null;
+let currentTerm = null;
 const subjectCache = new Map();
 let questions = [];
 let currentSubject = null;

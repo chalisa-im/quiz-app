@@ -62,6 +62,7 @@ function goToStart() {
     if (!confirmed) return;
   }
 
-  renderSubjectList();
+  if (currentTerm) renderSubjectList(currentTerm);
+  else renderTermList();
   showScreen("start-screen");
 }

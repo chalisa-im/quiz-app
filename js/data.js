@@ -7,7 +7,7 @@ async function init() {
     const res = await fetch("questions/index.json");
     if (!res.ok) throw new Error("HTTP " + res.status);
     allData = await res.json();
-    renderSubjectList();
+    renderTermList();
   } catch (err) {
     console.error("Failed to load subject index:", err);
     showLoadError("โหลดรายวิชาไม่สำเร็จ กรุณาตรวจสอบอินเทอร์เน็ตแล้วลองใหม่อีกครั้ง", init);

@@ -1,4 +1,4 @@
-// ── subject / category menu screens ────────────────────
+// ── term / subject / category menu screens ─────────────
 
 function toggleShuffle() {
   shuffleEnabled = !shuffleEnabled;
@@ -7,12 +7,37 @@ function toggleShuffle() {
   btn.classList.toggle("active", shuffleEnabled);
 }
 
-function renderSubjectList() {
+function renderTermList() {
+  currentTerm = null;
   const list = document.getElementById("subject-grid");
   list.innerHTML = "";
-  document.querySelector(".start-subtitle").textContent = "เลือกวิชาที่ต้องการทดสอบ";
+  document.querySelector(".start-subtitle").textContent = "เลือกเทอมที่ต้องการทดสอบ";
 
-  allData.subjects.forEach((entry) => {
+  allData.terms.forEach((termEntry) => {
+    const btn = document.createElement("button");
+    btn.className = "subject-card";
+    btn.innerHTML = `
+      <span class="subject-name">${termEntry.term}</span>
+      <span class="subject-count">${termEntry.subjects.length} วิชา</span>
+    `;
+    btn.onclick = () => renderSubjectList(termEntry);
+    list.appendChild(btn);
+  });
+}
+
+function renderSubjectList(termEntry) {
+  currentTerm = termEntry;
+  const list = document.getElementById("subject-grid");
+  list.innerHTML = "";
+  document.querySelector(".start-subtitle").textContent = termEntry.term;
+
+  const backBtn = document.createElement("button");
+  backBtn.className = "subject-card subject-card--back";
+  backBtn.innerHTML = `<span class="subject-name">${ICONS.back} เทอมอื่น</span>`;
+  backBtn.onclick = renderTermList;
+  list.appendChild(backBtn);
+
+  termEntry.subjects.forEach((entry) => {
     const btn = document.createElement("button");
     btn.className = "subject-card";
     btn.innerHTML = `
@@ -32,7 +57,7 @@ async function renderCategoryList(subjectData) {
   const backBtn = document.createElement("button");
   backBtn.className = "subject-card subject-card--back";
   backBtn.innerHTML = `<span class="subject-name">${ICONS.back} วิชาอื่น</span>`;
-  backBtn.onclick = renderSubjectList;
+  backBtn.onclick = () => renderSubjectList(currentTerm);
   list.appendChild(backBtn);
 
   const allKey = subjectData.subject + "（全部）";
