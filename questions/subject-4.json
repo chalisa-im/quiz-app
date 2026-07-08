@@ -1,0 +1,755 @@
+ {
+  "subject": "Webアプリケーション開発1",
+  "categories": [
+    {
+      "category": "第2回",
+      "questions": [
+        {
+          "type": "single",
+          "question": "問1：Webアプリの構成において、Djangoなどのプログラムを動かして処理の核となる結果を作る役割を持つのはどれですか。",
+          "options": [
+            "クライアント",
+            "Webサーバー",
+            "APサーバー",
+            "DBサーバー"
+          ],
+          "answer": 2,
+          "hint": "APサーバー（アプリケーションサーバー）は、システムの中核を担うプログラムを実行し、処理の結果を作成する役割を持ちます。"
+        },
+        {
+          "type": "single",
+          "question": "問2：PythonとDjangoの関係について、Djangoの説明として正しいものはどれですか。",
+          "options": [
+            "数値計算を専門に行うためのプログラミング言語",
+            "Webアプリを効率よく作るためのフレームワーク",
+            "ファイルやフォルダを編集するためのテキストエディタ",
+            "コマンドを入力して実行するためのターミナル"
+          ],
+          "answer": 1,
+          "hint": "DjangoはPythonというプログラミング言語の上で動く、Webアプリ開発のためのフレームワーク（枠組み）です。"
+        },
+        {
+          "type": "multi",
+          "question": "問3：Webアプリでデータを保存したり検索したりするために使われるデータベース（DBサーバー）のソフトウェアはどれですか。",
+          "options": [
+            "MySQL",
+            "PostgreSQL",
+            "NGINX",
+            "Apache"
+          ],
+          "answers": [0, 1],
+          "hint": "MySQLやPostgreSQLはデータを管理する代表的なデータベースソフトです。NGINXやApacheはWebサーバーとしての役割を持ちます。"
+        },
+        {
+          "type": "single",
+          "question": "問4：ターミナルでPythonがインストールされているか、またそのバージョンを確認するためのコマンドはどれですか。",
+          "options": [
+            "python --start",
+            "python install",
+            "python -run",
+            "python -V"
+          ],
+          "answer": 3,
+          "hint": "python -V（大文字のV）を実行することで、インストールされているPythonのバージョンが表示されます。"
+        },
+        {
+          "type": "single",
+          "question": "問5：ターミナルでの操作において、現在いるフォルダから1つ上の階層のフォルダに移動したいときに使うコマンドはどれですか。",
+          "options": [
+            "cd ..",
+            "cd next",
+            "move up",
+            "exit"
+          ],
+          "answer": 0,
+          "hint": "cdはディレクトリを移動するコマンドで、..は1つ上の階層を指します。"
+        },
+        {
+          "type": "single",
+          "question": "問6：この科目で共通して使用するPythonの仮想環境（venv）を新規作成するためのコマンドはどれですか。",
+          "options": [
+            "python create venv",
+            "pip install venv",
+            "python -m venv venv",
+            "venv start"
+          ],
+          "answer": 2,
+          "hint": "python -m venv venvを実行することで、現在の場所にvenvという名前の仮想環境フォルダが作成されます。"
+        },
+        {
+          "type": "single",
+          "question": "問7：Windowsにおいて、作成した仮想環境（venv）を有効化（アクティベート）するために実行するファイルのパスはどれですか。",
+          "options": [
+            "venv\\bin\\activate",
+            "venv\\activate.exe",
+            "venv\\Scripts\\activate",
+            "venv\\start\\activate"
+          ],
+          "answer": 2,
+          "hint": "WindowsではScriptsフォルダの中にあるactivateというファイルを実行することで、仮想環境が有効になります。"
+        },
+        {
+          "type": "single",
+          "question": "問8：仮想環境を有効にした状態で、Pythonのパッケージ管理ツールを使ってDjangoをインストールするコマンドはどれですか。",
+          "options": [
+            "get django",
+            "python install django",
+            "django-admin setup",
+            "pip install django"
+          ],
+          "answer": 3,
+          "hint": "Pythonのライブラリやフレームワークをインストールするには、pip installというコマンドを使用します。"
+        },
+        {
+          "type": "single",
+          "question": "問9：django-admin startproject django_app . というコマンドにおいて、最後にあるドット（.）にはどのような意味がありますか。",
+          "options": [
+            "インターネットから最新のデータを取得する",
+            "現在開いているフォルダの直下にプロジェクトを作成する",
+            "開発用サーバーを自動的に起動する",
+            "作成するプロジェクトに管理者権限を付与する"
+          ],
+          "answer": 1,
+          "hint": "コマンドの最後にあるドット（.）は「現在の場所」を意味し、今開いているフォルダ内に直接ファイルを生成するために必要です。"
+        },
+        {
+          "type": "multi",
+          "question": "問10：Djangoプロジェクトの作成に成功したあと、フォルダ内に自動で作成されているものはどれですか。",
+          "options": [
+            "django_app フォルダ",
+            "manage.py ファイル",
+            "venv フォルダ",
+            "requirement.txt ファイル"
+          ],
+          "answers": [0, 1],
+          "hint": "プロジェクトを作成すると、設定ファイルを収めたdjango_appフォルダと、管理用プログラムであるmanage.pyが作成されます。venvは自分で事前に作成するものです。"
+        }
+      ]
+    },
+  {
+  "category": "第3回",
+  "questions": [
+    {
+      "type": "single",
+      "question": "問1：Djangoの役割分担において、HTMLやCSSなどを用いて画面の見た目（表示）を担当するものはどれですか。",
+      "options": [
+        "Model",
+        "View",
+        "Template",
+        "Controller"
+      ],
+      "answer": 2,
+      "hint": "DjangoではTemplate（テンプレート）が画面表示を担当します。Viewは処理を、Modelはデータを扱います。"
+    },
+    {
+      "type": "single",
+      "question": "問2：Djangoにおけるプロジェクトとアプリケーションの関係について、正しい説明はどれですか。",
+      "options": [
+        "アプリケーションはWebアプリ全体の土台となる",
+        "プロジェクトは機能ごとに分けた部品である",
+        "1つのプロジェクトの中に複数のアプリケーションを追加できる",
+        "アプリケーションの中にプロジェクトを作成する"
+      ],
+      "answer": 2,
+      "hint": "プロジェクトはアプリ全体の土台であり、その中に特定の機能を持つアプリケーションを部品として追加して構成します。"
+    },
+    {
+      "type": "single",
+      "question": "問3：helloという名前の新しいアプリケーションを新しく作成するためのコマンドはどれですか。",
+      "options": [
+        "python manage.py startapp hello",
+        "python manage.py createapp hello",
+        "django-admin startproject hello",
+        "pip install hello"
+      ],
+      "answer": 0,
+      "hint": "startappコマンドを使用することで、アプリケーションに必要なフォルダやviews.pyなどのファイルが自動的に作成されます。"
+    },
+    {
+      "type": "single",
+      "question": "問4：views.pyに記述する、ブラウザからのリクエストを受け取って処理を行う関数の定義として適切なものはどれですか。",
+      "options": [
+        "def index():",
+        "def index(request):",
+        "function index(request):",
+        "def index(url):"
+      ],
+      "answer": 1,
+      "hint": "DjangoのView関数は、引数としてブラウザからの要求情報が含まれるrequestオブジェクトを受け取る必要があります。"
+    },
+    {
+      "type": "single",
+      "question": "問5：次のプログラムのように、Viewからブラウザへ「Hello Django!!」という文字列を直接返したい場合に使用するクラスはどれですか。\ndef index(request):\n    return XXXXX(\"Hello Django!!\")",
+      "options": [
+        "HttpRender",
+        "HttpRequest",
+        "HttpResponse",
+        "HttpRedirect"
+      ],
+      "answer": 2,
+      "hint": "HttpResponseクラスを使用することで、特定の文字列をレスポンスとしてブラウザに返すことができます。"
+    },
+    {
+      "type": "multi",
+      "question": "問6：Djangoで「プロジェクト側」と「アプリ側」の2つのurls.pyを使用する場合の役割について、正しいものはどれですか。",
+      "options": [
+        "プロジェクト側のurls.pyはWebアプリ全体の入口となる",
+        "プロジェクト側のurls.pyはどのアプリケーションに処理を渡すかを決める",
+        "アプリケーション側のurls.pyはそのアプリ内のどのViewを呼ぶかを決める",
+        "アプリケーション側のurls.pyはデータベースの保存場所を決める"
+      ],
+      "answers": [0, 1, 2],
+      "hint": "プロジェクト側は全体の入口としてリクエストを各アプリへ振り分け、アプリ側はその中でどの関数を実行するかを決定します。"
+    },
+    {
+      "type": "single",
+      "question": "問7：作成したWebアプリを起動して、ブラウザで動作確認ができる状態にするためのコマンドはどれですか。",
+      "options": [
+        "python manage.py startserver",
+        "python manage.py runserver",
+        "python manage.py execute",
+        "python manage.py deploy"
+      ],
+      "answer": 1,
+      "hint": "runserverコマンドを実行することで開発用のWebサーバーが起動し、ブラウザからのアクセスを待ち受ける状態になります。"
+    },
+    {
+      "type": "single",
+      "question": "問8：プロジェクト側のurls.pyに path(hello/, include(hello.urls)) と設定した場合、アプリにアクセスするための正しいURL（ポート番号以降）はどれですか。",
+      "options": [
+        "/",
+        "/index/",
+        "/hello/",
+        "/app/hello/"
+      ],
+      "answer": 2,
+      "hint": "path関数で指定した文字列がURLの経路となります。この設定では、ドメイン名の直後に/hello/を付けることでアクセスできます。"
+    },
+    {
+      "type": "single",
+      "question": "問9：プロジェクト側のurls.pyにおいて、別のファイル（アプリ側のurls.py）の設定を読み込んで連携させるために必要な関数はどれですか。",
+      "options": [
+        "path",
+        "render",
+        "include",
+        "import"
+      ],
+      "answer": 2,
+      "hint": "include関数を使用することで、他のurls.pyに定義されたルーティング設定を取り込むことができます。"
+    },
+    {
+      "type": "multi",
+      "question": "問10：コマンドでhelloアプリを作成した直後、helloフォルダの中に自動的に作成されているファイルはどれですか。",
+      "options": [
+        "views.py",
+        "models.py",
+        "urls.py",
+        "manage.py"
+      ],
+      "answers": [0, 1],
+      "hint": "views.pyやmodels.pyなどは自動生成されますが、アプリ側のurls.pyは自分で新しく作成する必要があります。manage.pyはプロジェクト直下にあります。"
+    }
+  ]
+},
+{
+  "category": "第4回",
+  "questions": [
+    {
+      "type": "single",
+      "question": "問1：URLの末尾に情報を付けて値を渡す「クエリパラメータ」の書き方として、正しい形式はどれですか。",
+      "options": [
+        "/hello/msg=hello",
+        "/hello/?msg=hello",
+        "/hello/&msg=hello",
+        "/hello/:msg=hello"
+      ],
+      "answer": 1,
+      "hint": "クエリパラメータは、URLの末尾に?を付け、その後に key=value の形式で記述します。"
+    },
+    {
+      "type": "single",
+      "question": "問2：DjangoのView関数において、ブラウザからのアクセス情報やクエリパラメータが格納されているオブジェクトはどれですか。",
+      "options": [
+        "response",
+        "session",
+        "request",
+        "context"
+      ],
+      "answer": 2,
+      "hint": "requestオブジェクトには、ブラウザからのアクセスに関する様々な情報が入っており、クエリパラメータはrequest.GETに格納されます。"
+    },
+    {
+      "type": "multi",
+      "question": "問3：URLが /hello/?msg=hello&name=taro であるとき、クエリパラメータとして渡されている「値（バリュー）」はどれですか。",
+      "options": [
+        "msg",
+        "hello",
+        "name",
+        "taro"
+      ],
+      "answers": [1, 3],
+      "hint": "?key=value の形式において、= の後ろにあるのが値です。この場合、hello と taro が値に該当します。"
+    },
+    {
+      "type": "single",
+      "question": "問4：View関数の中で msg = request.GET[\"msg\"] と記述している場合、ブラウザからパラメータを付けずに /hello/ とアクセスするとどうなりますか。",
+      "options": [
+        "メッセージが空文字として処理される",
+        "エラーが発生して画面が表示されない",
+        "自動的に管理画面へ移動する",
+        "ブラウザがフリーズする"
+      ],
+      "answer": 1,
+      "hint": "特定のキー（この場合はmsg）が存在する前提でコードを書くと、パラメータがない場合に値を取り出せずエラーになります。"
+    },
+    {
+      "type": "single",
+      "question": "問5：クエリパラメータが存在するかどうかを事前に確認し、エラーを回避するためのPythonの記述として適切なものはどれですか。",
+      "options": [
+        "if \"msg\" in request.GET:",
+        "if request.GET is \"msg\":",
+        "while \"msg\" == request.GET:",
+        "try \"msg\" from request.GET:"
+      ],
+      "answer": 0,
+      "hint": "in 演算子を使うことで、指定したキーがrequest.GETの中に含まれているかどうかをチェックできます。"
+    },
+    {
+      "type": "single",
+      "question": "問6：クエリパラメータ（request.GET）とURLパターンの違いについて、正しい説明はどれですか。",
+      "options": [
+        "クエリパラメータはURLの途中にディレクトリ名のように含まれる",
+        "URLパターンは?の後ろにキーと値をセットで記述する",
+        "クエリパラメータは?key=valueの形式でURLの末尾に付加する",
+        "URLパターンは常に1つの値しか渡すことができない"
+      ],
+      "answer": 2,
+      "hint": "クエリパラメータはURLの末尾に?を付けて渡す方式で、URLパターンはURL自体の構成要素として値を渡す方式です。"
+    },
+    {
+      "type": "single",
+      "question": "問7：urls.pyで path(\"<int:id>/\", views.index) と設定した場合、この id はプログラム内でどのように扱われますか。",
+      "options": [
+        "文字列として扱われる",
+        "浮動小数点数として扱われる",
+        "整数として扱われる",
+        "日付として扱われる"
+      ],
+      "answer": 2,
+      "hint": "<int:id> のように指定することで、URLから受け取った値を整数（int型）としてViewに渡すことができます。"
+    },
+    {
+      "type": "single",
+      "question": "問8：URLパターンを使って値を渡す際、プログラムの書き方について正しいものはどれですか。",
+      "options": [
+        "View関数の引数の数は、URLで指定した値の数に関わらず常に1つである",
+        "urls.pyで定義した名前（idなど）とView関数の引数名を一致させる",
+        "関数の引数には必ず *args というキーワードを使用する",
+        "URLパターンで渡す値は必ず末尾に / を付けてはいけない"
+      ],
+      "answer": 1,
+      "hint": "URLパターンで <int:id> と定義した場合、対応するView関数でも引数名を id とすることで値を受け取ることができます。"
+    },
+    {
+      "type": "multi",
+      "question": "問9：クエリパラメータやURLパターンの利用において、注意すべき点（よくあるミス）はどれですか。",
+      "options": [
+        "URLに?を付け忘れる",
+        "request.GET[\"msg\"] のようにキーを囲む引用符を忘れる",
+        "URLパターンの変数の数とView関数の引数の数が合っていない",
+        "Pythonの標準ライブラリをすべてインポートし忘れる"
+      ],
+      "answers": [0, 1, 2],
+      "hint": "?の欠如や引用符の忘れ、引数の不一致は、値が正しく渡されなかったりエラーになったりする代表的な原因です。"
+    },
+    {
+      "type": "single",
+      "question": "問10：URLが /hello/123/taro/ のように、スラッシュで区切られた特定の部分を値として受け取る方式の名称はどれですか。",
+      "options": [
+        "クエリパラメータ",
+        "URLパターン",
+        "フォームデータ",
+        "ヘッダー情報"
+      ],
+      "answer": 1,
+      "hint": "URLの一部を値として扱う方法はURLパターンと呼ばれます。?を使うクエリパラメータとは区別されます。"
+    }
+  ]
+},
+{
+  "category": "第5回",
+  "questions": [
+    {
+      "type": "single",
+      "question": "問1：Djangoにおけるテンプレート（Template）の主な役割として、正しいものはどれですか。",
+      "options": [
+        "データベースとの接続設定を行う",
+        "画面表示用のHTMLファイルとして機能する",
+        "URLとプログラムの関数を結びつける",
+        "サーバーの起動コマンドを管理する"
+      ],
+      "answer": 1,
+      "hint": "テンプレートは「画面表示を担当するファイル」です。Pythonのプログラム（View）の中にHTMLを書くのではなく、別のファイルに分けることで管理しやすくなります。"
+    },
+    {
+      "type": "single",
+      "question": "問2：作成したアプリケーションをDjango本体に認識させるために、settings.py内のどの項目にアプリ名を追加する必要がありますか。",
+      "options": [
+        "MIDDLEWARE",
+        "DATABASES",
+        "TEMPLATES",
+        "INSTALLED_APPS"
+      ],
+      "answer": 3,
+      "hint": "helloアプリなどを新しく作成したときは、settings.pyの INSTALLED_APPS のリストにその名前を追加することで、Djangoがテンプレートや設定を読み取れるようになります。"
+    },
+    {
+      "type": "single",
+      "question": "問3：テンプレートファイルを保存する場所として、Djangoの慣習で最も推奨されるフォルダ構成はどれですか。",
+      "options": [
+        "hello/index.html",
+        "hello/templates/index.html",
+        "hello/templates/hello/index.html",
+        "hello/html/index.html"
+      ],
+      "answer": 2,
+      "hint": "アプリ名フォルダの中に templates フォルダを作り、さらにその中にアプリ名のフォルダ（今回の場合は hello）を作ってからHTMLファイルを置くのが一般的なルールです。"
+    },
+    {
+      "type": "single",
+      "question": "問4：View関数の中で、テンプレートファイルを読み込んでブラウザに表示結果を返すために使われる関数はどれですか。",
+      "options": [
+        "render",
+        "HttpResponse",
+        "redirect",
+        "get_template"
+      ],
+      "answer": 0,
+      "hint": "これまでは HttpResponse を使って文字列を直接返していましたが、HTMLファイルを表示させる場合は render 関数を使用します。"
+    },
+    {
+      "type": "single",
+      "question": "問5：次のプログラムコードにおいて、テンプレートへ値を渡すために使われている引数（params）はどれですか。\nreturn render(request, \"hello/index.html\", params)",
+      "options": [
+        "1番目の引数（request）",
+        "2番目の引数（\"hello/index.html\"）",
+        "3番目の引数（params）",
+        "このコードには値を渡す引数はない"
+      ],
+      "answer": 2,
+      "hint": "render関数の第3引数に辞書型のデータを指定することで、その中身をテンプレート（HTML）側で利用できるようになります。"
+    },
+    {
+      "type": "single",
+      "question": "問6：View側で用意したデータを、テンプレートに渡して表示させたいときに使用するPythonのデータ形式はどれですか。",
+      "options": [
+        "リスト",
+        "辞書（ディクショナリ）",
+        "タプル",
+        "集合（セット）"
+      ],
+      "answer": 1,
+      "hint": "params = {\"title\": \"Hello\"} のように、キーと値のペアで管理する「辞書型」の変数を使ってデータを渡します。"
+    },
+    {
+      "type": "single",
+      "question": "問7：テンプレートファイル（HTML）の中で、Viewから渡された変数 title の中身を表示させるための正しい書き方はどれですか。",
+      "options": [
+        "{ title }",
+        "[[ title ]]",
+        "<% title %>",
+        "{{ title }}"
+      ],
+      "answer": 3,
+      "hint": "Djangoのテンプレートエンジンでは、中カッコを2つ重ねた {{ 変数名 }} という記法を使って、渡された値を画面に出力します。"
+    },
+    {
+      "type": "multi",
+      "question": "問8：画面表示にテンプレート（HTMLファイル）を使用する利点として、適切なものはどれですか。",
+      "options": [
+        "Pythonのプログラム内にHTMLを大量に書かなくて済む",
+        "処理のロジックと画面のデザインを分けて管理できる",
+        "HTMLファイルを修正するだけで画面の見た目を変更できる",
+        "データベースのパスワードを安全に隠すことができる"
+      ],
+      "answers": [0, 1, 2],
+      "hint": "テンプレートを使うことで「処理（View）」と「表示（Template）」の役割分担ができ、プログラムの見通しが良くなるとともに、デザインの修正も容易になります。"
+    },
+    {
+      "type": "multi",
+      "question": "問9：テンプレートが正しく表示されないエラーが起きた際、確認すべきポイントとして考えられるものはどれですか。",
+      "options": [
+        "templatesフォルダの場所が間違っている",
+        "render関数で指定したファイル名が実際のものと違う",
+        "HTML内の変数名がViewで作った辞書のキーと一致していない",
+        "settings.pyでアプリ名を登録し忘れている"
+      ],
+      "answers": [0, 1, 2, 3],
+      "hint": "これらはすべて初心者が間違いやすいポイントです。フォルダの階層、ファイル名の一致、変数名の綴り、そしてアプリの登録状況を順番に確認することが大切です。"
+    },
+    {
+      "type": "single",
+      "question": "問10：ブラウザからのアクセスに対して、画面が表示されるまでのDjangoの基本的な流れとして正しいものはどれですか。",
+      "options": [
+        "URLからViewが呼ばれ、Viewがrender関数でテンプレートを返却する",
+        "テンプレートが直接URLを解析してデータベースにアクセスする",
+        "HTMLファイルがViewを呼び出し、URLを自動生成する",
+        "settings.pyが直接HTMLファイルを選択してブラウザに送る"
+      ],
+      "answer": 0,
+      "hint": "「URL（住所）→ View（処理）→ Template（表示）」という流れが基本です。Viewが仲介役となってテンプレートに必要なデータを渡します。"
+    }
+  ]
+},
+{
+  "category": "第6回",
+  "questions": [
+    {
+      "type": "single",
+      "question": "問1：DjangoのWebアプリ開発において、表示したい値をPython側で準備する役割を持つのはどれですか。",
+      "options": [
+        "Template",
+        "View",
+        "URLconf",
+        "Webサーバー"
+      ],
+      "answer": 1,
+      "hint": "View（ビュー）はPythonのプログラムとして、画面に表示するためのデータを計算したり準備したりする役割を担います。"
+    },
+    {
+      "type": "single",
+      "question": "問2：Viewで準備した値を、HTMLファイルの中の特定の場所に表示させる役割を持つのはどれですか。",
+      "options": [
+        "Model",
+        "Controller",
+        "Template",
+        "settings.py"
+      ],
+      "answer": 2,
+      "hint": "Template（テンプレート）はHTMLファイルであり、Viewから渡されたデータを受け取って画面上の適切な場所に表示する役割を持ちます。"
+    },
+    {
+      "type": "multi",
+      "question": "問3：ViewからTemplateへ複数の値をまとめて渡す際に使用する、辞書型の変数（params）の特徴として正しいものはどれですか。",
+      "options": [
+        "1つだけでなく複数の値をまとめて管理できる",
+        "キー（名前）と値のペアでデータを保持する",
+        "render関数の第3引数として渡される",
+        "HTMLファイルを自動的に削除する機能がある"
+      ],
+      "answers": [0, 1, 2],
+      "hint": "辞書型の変数を使うことで、見出し（title）や本文（msg）といった複数のデータをセットにしてTemplateに送ることができます。"
+    },
+    {
+      "type": "single",
+      "question": "問4：Template（HTML）の中で、Viewから渡された変数名 title の値を表示させるための正しい記述方法はどれですか。",
+      "options": [
+        "( title )",
+        "[[ title ]]",
+        "{{ title }}",
+        "{% title %}"
+      ],
+      "answer": 2,
+      "hint": "Djangoのテンプレートでは、中カッコを2つ重ねた {{ 変数名 }} という記法を使うことで、プログラムから渡された値を表示できます。"
+    },
+    {
+      "type": "single",
+      "question": "問5：View関数の最後で、テンプレートファイル名と準備したデータ（params）を指定して画面を呼び出すための正しいコードはどれですか。",
+      "options": [
+        "return HttpResponse(index.html, params)",
+        "return render(request, \"hello/index.html\", params)",
+        "return redirect(\"hello/index.html\", params)",
+        "return show(request, index.html)"
+      ],
+      "answer": 1,
+      "hint": "render関数は、第1引数にrequest、第2引数にテンプレートのパス、第3引数に渡したいデータ（辞書型）を指定します。"
+    },
+    {
+      "type": "single",
+      "question": "問6：View側で params = { \"title\": \"Hello\" } と定義したとき、Template側で {{ message }} と書くとどうなりますか。",
+      "options": [
+        "\"Hello\" と表示される",
+        "エラーが発生してサーバーが止まる",
+        "何も表示されない（または意図した値が出ない）",
+        "自動的に \"title\" の中身が表示される"
+      ],
+      "answer": 2,
+      "hint": "View側で設定した辞書のキー（名前）と、Template側で使う変数名は一致している必要があります。名前が違うと正しく表示されません。"
+    },
+    {
+      "type": "multi",
+      "question": "問7：ViewからTemplateへ値を渡して表示させるまでの正しい手順に含まれるものはどれですか。",
+      "options": [
+        "Viewで辞書型の変数（params）を作成する",
+        "render関数の引数にparamsを追加して実行する",
+        "Template側で{{ }}を使って値を表示する場所を指定する",
+        "コマンドプロンプトでHTMLファイルを直接実行する"
+      ],
+      "answers": [0, 1, 2],
+      "hint": "Python側でデータを準備し、renderで橋渡しをし、HTML側で受け取るという3つのステップが基本の流れとなります。"
+    },
+    {
+      "type": "single",
+      "question": "問8：Viewで params = { \"title\": \"Hello\", \"msg\": \"Test\" } としているとき、新しく username という値を表示させたい場合、最初に行うべき操作はどれですか。",
+      "options": [
+        "新しいHTMLファイルをもう1つ作成する",
+        "settings.pyに username を登録する",
+        "paramsの辞書の中に \"username\": \"名前\" のペアを追加する",
+        "サーバーを一度削除して作り直す"
+      ],
+      "answer": 2,
+      "hint": "表示する項目を増やしたいときは、まずデータの送り元であるViewの辞書（params）に新しい要素を追加します。"
+    },
+    {
+      "type": "single",
+      "question": "問9：画面に値が正しく表示されない「よくあるミス」として、当てはまらないものはどれですか。",
+      "options": [
+        "render関数の第3引数（params）を書き忘れている",
+        "Templateの保存場所（フォルダ構成）が間違っている",
+        "{{ title }} の中カッコが1つしか書かれていない",
+        "Pythonのバージョンが最新ではない"
+      ],
+      "answer": 3,
+      "hint": "値が表示されない原因の多くは、綴りミスや引数の忘れ、ファイルの置き場所の間違いなど、プログラムの書き方に関するものです。"
+    },
+    {
+      "type": "single",
+      "question": "問10：プログラムを修正したあと、ブラウザで結果を確認する前に「困ったときの確認順」として最も適切なものはどれですか。",
+      "options": [
+        "ブラウザ → render関数 → 変数名 → paramsの内容",
+        "paramsの内容 → render関数の引数 → Templateの変数名 → ブラウザ",
+        "パソコンの再起動 → settings.py → フォルダの削除 → ブラウザ",
+        "HTMLの削除 → プロジェクトの作成 → views.py → ブラウザ"
+      ],
+      "answer": 1,
+      "hint": "データの作成元（params）から始まり、橋渡し（render）、表示先（Template）の順に確認していくのが効率的な解決方法です。"
+    }
+  ]
+},
+{
+  "category": "第7回",
+  "questions": [
+    {
+      "type": "single",
+      "question": "問1：実際のWebアプリケーションでよく使われる画面の構成として、適切なものはどれですか。",
+      "options": [
+        "一覧画面",
+        "詳細画面",
+        "入力画面",
+        "上記すべて"
+      ],
+      "answer": 3,
+      "hint": "実際のWebアプリは1つの画面だけで終わることは少なく、一覧、詳細、入力、確認など、複数の画面を組み合わせて構成されるのが一般的です。"
+    },
+    {
+      "type": "single",
+      "question": "問2：1つのアプリケーション内で2つ目のページ（Nextページなど）を作成するとき、views.py で行うべき操作はどれですか。",
+      "options": [
+        "index関数の中にすべての処理を詰め込む",
+        "ページごとに別の関数（next関数など）を定義する",
+        "settings.py を書き換えて関数を増やす",
+        "新しい仮想環境をその都度作成する"
+      ],
+      "answer": 1,
+      "hint": "ページごとに別のView関数を定義することで、それぞれ異なるテンプレートや処理を担当させることができます。"
+    },
+    {
+      "type": "single",
+      "question": "問3：Djangoのテンプレート内で、設定した名前（URL名）を使って動的にリンク先を生成するために使用する記法はどれですか。",
+      "options": [
+        "{% url goto %}",
+        "{{ url goto }}",
+        "<a href=goto>",
+        "{% link goto %}"
+      ],
+      "answer": 0,
+      "hint": "{% url %} タグを使用することで、urls.py で設定した名前（name属性）を元に、正しいリンク先URLを自動的に生成できます。"
+    },
+    {
+      "type": "single",
+      "question": "問4：urls.py で path(\"next\", views.next, name=\"next\") と記述した際、name=\"next\" という設定の役割は何ですか。",
+      "options": [
+        "関数の名前をプログラム上で強制的に変更する",
+        "ブラウザのタブ（タイトルバー）に表示する文字を決める",
+        "テンプレートの{% url %}タグなどで利用するための「URL名」を決める",
+        "データベース内に新しく作成するテーブル名を指定する"
+      ],
+      "answer": 2,
+      "hint": "name引数で指定した名前は、テンプレート側でリンク先を記述する際の識別子（URL名）として利用されます。"
+    },
+    {
+      "type": "single",
+      "question": "問5：Webページの作成において、内容（文書構造）ではなく、文字の色や大きさ、余白などの「見た目」を整える役割を持つものはどれですか。",
+      "options": [
+        "HTML",
+        "CSS",
+        "Python",
+        "SQLite"
+      ],
+      "answer": 1,
+      "hint": "HTMLはページの内容を書き、CSS（Cascading Style Sheets）は色、文字サイズ、配置などの見た目をデザインする役割を持ちます。"
+    },
+    {
+      "type": "single",
+      "question": "問6：デザインフレームワークである「Bootstrap」を利用する主な利点はどれですか。",
+      "options": [
+        "自分でCSSを詳しく書かなくても、整った見た目の部品を簡単に利用できる",
+        "Pythonプログラムの計算速度が大幅に向上する",
+        "自動的にデータベースのバックアップが毎日作成される",
+        "インターネット接続がなくてもWebアプリを世界中に公開できる"
+      ],
+      "answer": 0,
+      "hint": "Bootstrapはデザインの部品集のようなものであり、あらかじめ用意されたクラスを指定するだけで、ボタンやレイアウトを綺麗に整えられます。"
+    },
+    {
+      "type": "single",
+      "question": "問7：Bootstrapを使って、リンクの見た目を「青色のボタン風」にしたい場合、aタグに付けるクラス名として適切なものはどれですか。",
+      "options": [
+        "class=\"blue-button\"",
+        "class=\"link-style\"",
+        "class=\"important\"",
+        "class=\"btn btn-primary\""
+      ],
+      "answer": 3,
+      "hint": "Bootstrapでは btn クラスでボタンの基本形を作り、btn-primary クラスを指定することで主要なボタンの色（一般的に青色）を適用します。"
+    },
+    {
+      "type": "single",
+      "question": "問8：特定のView関数で、index.html ではなく next.html を表示させたい場合、render関数の第2引数をどのように記述しますか。",
+      "options": [
+        "\"hello/index.html\"",
+        "\"templates/next.html\"",
+        "\"hello/next.html\"",
+        "\"next.html\""
+      ],
+      "answer": 2,
+      "hint": "render関数の第2引数で表示したいテンプレートのパスを指定します。Viewによって、返すテンプレートファイルを自由に切り替えることが可能です。"
+    },
+    {
+      "type": "multi",
+      "question": "問9：ページ遷移を正しく動作させるために、最低限設定が必要な箇所の組み合わせはどれですか。",
+      "options": [
+        "views.py で遷移先の情報を入れた辞書（params）を作成する",
+        "urls.py の urlpatterns に遷移先のパス（path）を追加する",
+        "settings.py に使用するすべてのHTMLファイル名を個別に登録する",
+        "パソコンのOSを開発専用の最新版にアップデートする"
+      ],
+      "answers": [0, 1],
+      "hint": "リンク先に渡す情報（URL名など）を辞書に入れてテンプレートに渡し、かつ、urls.py でその移動先が有効なパスとして登録されている必要があります。"
+    },
+    {
+      "type": "multi",
+      "question": "問10：Webアプリケーションを構成する際、一般的に必要とされる画面の種類はどれですか。",
+      "options": [
+        "一覧画面",
+        "詳細画面",
+        "入力画面",
+        "確認画面"
+      ],
+      "answers": [0, 1, 2, 3],
+      "hint": "実際のWebアプリは、ユーザーの目的に応じて「一覧」「詳細」「入力」「確認」といった複数のページを使い分けることで、一連の機能を提供します。"
+    }
+  ]
+}
+  ]
+}

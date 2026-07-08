@@ -1,0 +1,64 @@
+{
+  "subjects": [
+    {
+      "subject": "IoT設計",
+      "file": "questions/subject-0.json",
+      "count": 54
+    },
+    {
+      "subject": "Pythonプログラミング実習1",
+      "file": "questions/subject-1.json",
+      "count": 120
+    },
+    {
+      "subject": "ネットワーク実習1",
+      "file": "questions/subject-2.json",
+      "count": 106
+    },
+    {
+      "subject": "オブジェクト指向言語実習3",
+      "file": "questions/subject-3.json",
+      "count": 120
+    },
+    {
+      "subject": "Webアプリケーション開発1",
+      "file": "questions/subject-4.json",
+      "count": 60
+    },
+    {
+      "subject": "ネットワーク実習2",
+      "file": "questions/subject-5.json",
+      "count": 119
+    },
+    {
+      "subject": "セキュリティ実習1",
+      "file": "questions/subject-6.json",
+      "count": 60
+    },
+    {
+      "subject": "アジャイル開発",
+      "file": "questions/subject-7.json",
+      "count": 80
+    },
+    {
+      "subject": "データベース実習3",
+      "file": "questions/subject-8.json",
+      "count": 80
+    },
+    {
+      "subject": "機械学習実習1",
+      "file": "questions/subject-9.json",
+      "count": 120
+    },
+    {
+      "subject": "ネットワーク実習3",
+      "file": "questions/subject-10.json",
+      "count": 50
+    },
+    {
+      "subject": "機械学習実習2",
+      "file": "questions/subject-11.json",
+      "count": 40
+    }
+  ]
+}

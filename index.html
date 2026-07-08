@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quiz App</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="manifest" href="manifest.json" />
+  <meta name="theme-color" content="#4FA3D8" />
+  <link rel="icon" href="icons/icon-192.png" />
+  <link rel="apple-touch-icon" href="icons/icon-192.png" />
+</head>
+<body>
+  <h1 class="app-title">Quiz Time!</h1>
+
+  <div class="card">
+
+    <!-- ── Start Screen ── -->
+    <div id="start-screen">
+      <div class="settings-bar">
+        <button id="btn-shuffle" class="toggle-btn" onclick="toggleShuffle()">Shuffle OFF</button>
+      </div>
+      <p class="start-subtitle">เลือกหมวดหมู่ที่ต้องการทดสอบ</p>
+      <div id="subject-grid"></div>
+    </div>
+
+    <!-- ── Quiz Screen ── -->
+    <div id="quiz-screen">
+      <div class="quiz-header-top">
+        <span id="subject-label"></span>
+        <button class="btn-exit-quiz" onclick="goToStart()"><svg class="icon-line" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg> ออก</button>
+      </div>
+      <div class="header">
+        <span id="progress-text">ตอบแล้ว 0 / 0 ข้อ</span>
+        <span id="score-display">0 คะแนน</span>
+      </div>
+      <div class="progress-track"><div id="progress-bar"></div></div>
+
+      <div id="questions-container"></div>
+
+      <div class="submit-all-wrap">
+        <button class="btn-submit-all" id="btn-submit-all" onclick="showResult()">ดูผลสรุป <svg class="icon-line" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></button>
+      </div>
+    </div>
+
+    <!-- ── Result Screen ── -->
+    <div id="result-screen">
+      <h2>ผลการทดสอบ</h2>
+      <span id="result-subject"></span>
+      <div id="result-score"></div>
+      <div id="result-grade"></div>
+
+      <div class="review-title">ข้อที่ตอบผิด</div>
+      <div id="wrong-list"></div>
+
+      <div class="result-actions">
+        <button class="btn-primary" onclick="restartQuiz()">เล่นอีกครั้ง</button>
+        <button class="btn-secondary" onclick="goToStart()">เลือกวิชาอื่น</button>
+      </div>
+    </div>
+
+  </div>
+  <script src="storage.js"></script>
+  <script src="js/state.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/render-menu.js"></script>
+  <script src="js/quiz.js"></script>
+  <script src="js/answers.js"></script>
+  <script src="js/result.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", () => {
+        navigator.serviceWorker.register("sw.js").catch(() => {});
+      });
+    }
+  </script>
+</body>
+</html>
