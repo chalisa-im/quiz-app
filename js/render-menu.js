@@ -11,14 +11,14 @@ function renderTermList() {
   currentTerm = null;
   const list = document.getElementById("subject-grid");
   list.innerHTML = "";
-  document.querySelector(".start-subtitle").textContent = "เลือกเทอมที่ต้องการทดสอบ";
+  document.querySelector(".start-subtitle").textContent = t("chooseTerm");
 
   allData.terms.forEach((termEntry) => {
     const btn = document.createElement("button");
     btn.className = "subject-card";
     btn.innerHTML = `
       <span class="subject-name">${termEntry.term}</span>
-      <span class="subject-count">${termEntry.subjects.length} วิชา</span>
+      <span class="subject-count">${t("subjectsCount", termEntry.subjects.length)}</span>
     `;
     btn.onclick = () => renderSubjectList(termEntry);
     list.appendChild(btn);
@@ -33,7 +33,7 @@ function renderSubjectList(termEntry) {
 
   const backBtn = document.createElement("button");
   backBtn.className = "subject-card subject-card--back";
-  backBtn.innerHTML = `<span class="subject-name">${ICONS.back} เทอมอื่น</span>`;
+  backBtn.innerHTML = `<span class="subject-name">${ICONS.back} ${t("backToTerm")}</span>`;
   backBtn.onclick = renderTermList;
   list.appendChild(backBtn);
 
@@ -42,7 +42,7 @@ function renderSubjectList(termEntry) {
     btn.className = "subject-card";
     btn.innerHTML = `
       <span class="subject-name">${entry.subject}</span>
-      <span class="subject-count">${entry.count} ข้อ</span>
+      <span class="subject-count">${t("questionsCount", entry.count)}</span>
     `;
     btn.onclick = () => loadAndRenderCategory(entry);
     list.appendChild(btn);
@@ -56,7 +56,7 @@ async function renderCategoryList(subjectData) {
 
   const backBtn = document.createElement("button");
   backBtn.className = "subject-card subject-card--back";
-  backBtn.innerHTML = `<span class="subject-name">${ICONS.back} วิชาอื่น</span>`;
+  backBtn.innerHTML = `<span class="subject-name">${ICONS.back} ${t("backToSubject")}</span>`;
   backBtn.onclick = () => renderSubjectList(currentTerm);
   list.appendChild(backBtn);
 
@@ -77,13 +77,13 @@ async function renderCategoryList(subjectData) {
     wrongBtn.className = "subject-card subject-card--wrong";
     wrongBtn.innerHTML = `
       <div class="card-info">
-        <span class="subject-name">${ICONS.refresh} ฝึกข้อที่ตอบผิดบ่อย</span>
-        <span class="subject-progress">เรียงตามที่ผิดบ่อย</span>
+        <span class="subject-name">${ICONS.refresh} ${t("wrongPractice")}</span>
+        <span class="subject-progress">${t("sortByWrong")}</span>
       </div>
-      <span class="subject-count">${wrongQs.length} ข้อ</span>
+      <span class="subject-count">${t("questionsCount", wrongQs.length)}</span>
     `;
     wrongBtn.onclick = () =>
-      startQuiz({ category: subjectData.subject + " — ข้อที่ตอบผิด", questions: wrongQs });
+      startQuiz({ category: subjectData.subject + " — " + t("wrongPractice"), questions: wrongQs });
     list.appendChild(wrongBtn);
   }
 
@@ -92,17 +92,17 @@ async function renderCategoryList(subjectData) {
   allBtn.className = "subject-card subject-card--all";
   allBtn.innerHTML = `
     <div class="card-info">
-      <span class="subject-name">${ICONS.layers} 全部</span>
-      ${allProg ? `<span class="subject-progress">ล่าสุด ${allProg.score}/${allProg.scorableCount} (${allProg.pct}%)</span>` : ""}
+      <span class="subject-name">${ICONS.layers} ${t("allLabel")}</span>
+      ${allProg ? `<span class="subject-progress">${t("latestScore", allProg.score, allProg.scorableCount, allProg.pct)}</span>` : ""}
     </div>
-    <span class="subject-count">${allQuestions.length} ข้อ</span>
+    <span class="subject-count">${t("questionsCount", allQuestions.length)}</span>
   `;
   allBtn.onclick = () => startQuiz({ category: allKey, questions: allQuestions });
   list.appendChild(allBtn);
 
   const divider = document.createElement("div");
   divider.className = "category-divider";
-  divider.textContent = "หรือเลือกครั้งที่";
+  divider.textContent = t("orChooseRound");
   list.appendChild(divider);
 
   subjectData.categories.forEach((cat, i) => {
@@ -112,9 +112,9 @@ async function renderCategoryList(subjectData) {
     btn.innerHTML = `
       <div class="card-info">
         <span class="subject-name">${cat.category}</span>
-        ${prog ? `<span class="subject-progress">ล่าสุด ${prog.score}/${prog.scorableCount} (${prog.pct}%)</span>` : ""}
+        ${prog ? `<span class="subject-progress">${t("latestScore", prog.score, prog.scorableCount, prog.pct)}</span>` : ""}
       </div>
-      <span class="subject-count">${cat.questions.length} ข้อ</span>
+      <span class="subject-count">${t("questionsCount", cat.questions.length)}</span>
     `;
     btn.onclick = () => startQuiz(cat);
     list.appendChild(btn);

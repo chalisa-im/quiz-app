@@ -13,10 +13,14 @@ function prepareQuestion(q) {
   const opts = q.options ?? q.choices ?? [];
   if (!opts.length) return q;
 
-  const indexed = opts.map((opt, i) => ({ opt, origIdx: i }));
+  // Shuffle Thai and Japanese option lists together (same permutation) so
+  // they stay in sync with each other and with the answer index/indices.
+  const optsTh = Array.isArray(q.options_th) && q.options_th.length === opts.length ? q.options_th : null;
+  const indexed = opts.map((opt, i) => ({ opt, optTh: optsTh ? optsTh[i] : undefined, origIdx: i }));
   shuffleArray(indexed);
 
   const q2 = { ...q, options: indexed.map((x) => x.opt) };
+  if (optsTh) q2.options_th = indexed.map((x) => x.optTh);
 
   if (q.type === "single") {
     q2.answer = indexed.findIndex((x) => x.origIdx === q.answer);
@@ -51,9 +55,8 @@ async function startQuiz(subject) {
 }
 
 function updateProgress() {
-  document.getElementById("progress-text").textContent =
-    `ตอบแล้ว ${answeredCount} / ${questions.length} ข้อ`;
-  document.getElementById("score-display").textContent = `${score} คะแนน`;
+  document.getElementById("progress-text").textContent = t("answered", answeredCount, questions.length);
+  document.getElementById("score-display").textContent = t("scorePoints", score);
   document.getElementById("progress-bar").style.width =
     questions.length > 0 ? `${(answeredCount / questions.length) * 100}%` : "0%";
 
@@ -79,17 +82,21 @@ async function renderAllQuestions() {
     card.className = "question-card";
     card.id = `q-card-${i}`;
 
-    const badgeMap = { multi: "เลือกได้หลายข้อ", fill: "เติมคำตอบ" };
+    const badgeMap = { multi: t("multiChoice"), fill: t("fillChoice") };
     const typeBadgeHtml = badgeMap[type]
       ? `<span class="type-badge" style="display:inline-block">${badgeMap[type]}</span>`
       : "";
-    const scoreBadgeHtml = `<span class="score-badge" style="display:inline-block">${q.score ?? 1} คะแนน</span>`;
+    const scoreBadgeHtml = `<span class="score-badge" style="display:inline-block">${t("scorePoints", q.score ?? 1)}</span>`;
     const wrongBadgeHtml = wc > 0
-      ? `<span class="wrong-count-badge" style="display:inline-block">ผิด ${wc} ครั้ง</span>`
+      ? `<span class="wrong-count-badge" style="display:inline-block">${t("wrongTimes", wc)}</span>`
       : "";
 
+    // Question text always shows in its original (Japanese) form during
+    // the quiz itself -- this is real course material, so the Thai
+    // translation is offered as a study aid in the feedback box only
+    // *after* answering (see answers.js showFeedback), not swapped in.
     card.innerHTML = `
-      <div class="q-num">ข้อ ${i + 1} <span class="q-status" id="q-status-${i}"></span></div>
+      <div class="q-num">${t("questionNum", i + 1)} <span class="q-status" id="q-status-${i}"></span></div>
       <p class="q-text">${q.question}</p>
       <div class="badge-row">${typeBadgeHtml}${scoreBadgeHtml}${wrongBadgeHtml}</div>
       <div class="q-choices" id="q-choices-${i}"></div>

@@ -1,9 +1,10 @@
-const CACHE_NAME = "quiz-app-cache-v8";
+const CACHE_NAME = "quiz-app-cache-v10";
 const PRECACHE_URLS = [
   "./",
   "./index.html",
   "./style.css",
   "./storage.js",
+  "./js/i18n.js",
   "./js/state.js",
   "./js/data.js",
   "./js/render-menu.js",

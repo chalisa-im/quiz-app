@@ -55,7 +55,7 @@ function renderMultiCard(q, i, el) {
 
   const btn = document.createElement("button");
   btn.className = "btn-submit-answer";
-  btn.textContent = "ส่งคำตอบ";
+  btn.textContent = t("submitAnswer");
   btn.onclick = () => answerMulti(i);
   el.appendChild(btn);
 }
@@ -95,7 +95,7 @@ async function answerMulti(i) {
       question: q.question,
       yourAnswer: selectedSet.size
         ? [...selectedSet].map((j) => opts[j]).join("、")
-        : "(ไม่ได้เลือก)",
+        : t("notSelected"),
       correctAnswer: [...correctSet].map((j) => opts[j]).join("、"),
     });
   }
@@ -109,8 +109,8 @@ async function answerMulti(i) {
 // ── fill ──────────────────────────────────────────────
 function renderFillCard(q, i, el) {
   el.innerHTML = `
-    <input type="text" class="fill-input" id="fill-input-${i}" placeholder="พิมพ์คำตอบ..." autocomplete="off" />
-    <button class="btn-submit-answer" id="fill-submit-${i}" onclick="answerFill(${i})">ส่งคำตอบ</button>
+    <input type="text" class="fill-input" id="fill-input-${i}" placeholder="${t("typeAnswerPlaceholder")}" autocomplete="off" />
+    <button class="btn-submit-answer" id="fill-submit-${i}" onclick="answerFill(${i})">${t("submitAnswer")}</button>
   `;
   document.getElementById(`fill-input-${i}`).addEventListener("keydown", (e) => {
     if (e.key === "Enter") answerFill(i);
@@ -137,7 +137,7 @@ async function answerFill(i) {
     reviewItems.push({
       type: "fill",
       question: q.question,
-      yourAnswer: userAnswer || "(ไม่ได้ตอบ)",
+      yourAnswer: userAnswer || t("notAnswered"),
       correctAnswer,
     });
   }
@@ -148,6 +148,34 @@ async function answerFill(i) {
   updateProgress();
 }
 
+// ── translation aid (Thai) ─────────────────────────────
+// Builds the "คำแปล" block shown inside the feedback area once a question
+// has been answered. Kept separate from the live quiz content on purpose:
+// the question/options stay in Japanese while you're answering (this is
+// real course material), and the Thai translation is only revealed here,
+// afterwards, as a study aid -- so reviewing doesn't mean losing the
+// original Japanese wording.
+function buildTranslationBlock(q) {
+  if (!q.question_th) return "";
+
+  const optsJa = q.options ?? q.choices ?? [];
+  const optsTh = Array.isArray(q.options_th) && q.options_th.length === optsJa.length ? q.options_th : null;
+
+  const optionsHtml = optsTh
+    ? `<ul class="q-translate-options">` +
+      optsJa.map((ja, idx) => `<li><span class="q-translate-ja">${ja}</span><span class="q-translate-th">${optsTh[idx]}</span></li>`).join("") +
+      `</ul>`
+    : "";
+
+  return `
+    <div class="q-translate-box">
+      <div class="q-translate-label">คำแปลไทย</div>
+      <p class="q-translate-question">${q.question_th}</p>
+      ${optionsHtml}
+    </div>
+  `;
+}
+
 // ── feedback helpers ──────────────────────────────────
 function showFeedback(i, q, correct, correctAnswer) {
   const feedbackEl = document.getElementById(`q-feedback-${i}`);
@@ -155,15 +183,17 @@ function showFeedback(i, q, correct, correctAnswer) {
 
   if (q.type === "fill") {
     if (correct) {
-      html += `<div class="fill-result fill-result--correct">ถูกต้อง!</div>`;
+      html += `<div class="fill-result fill-result--correct">${t("correctFeedback")}</div>`;
     } else {
-      html += `<div class="fill-result fill-result--wrong">ผิด — คำตอบที่ถูก: <strong>${correctAnswer}</strong></div>`;
+      html += `<div class="fill-result fill-result--wrong">${t("wrongAnswerIs", `<strong>${correctAnswer}</strong>`)}</div>`;
     }
   }
 
   if (q.hint) {
     html += `<div class="q-hint-box">${q.hint}</div>`;
   }
+
+  html += buildTranslationBlock(q);
 
   feedbackEl.innerHTML = html;
 }

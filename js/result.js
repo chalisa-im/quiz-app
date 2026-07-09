@@ -7,36 +7,37 @@ async function showResult() {
   if (scorableCount > 0) await saveProgress(currentSubject.category, score, scorableCount, pct);
 
   showScreen("result-screen");
+  applyStaticI18n();
   document.getElementById("result-subject").textContent = currentSubject.category;
   document.getElementById("result-score").textContent =
     scorableCount > 0
-      ? `${score} / ${scorableCount} คะแนน (${pct}%)`
-      : "ไม่มีข้อให้คะแนน";
+      ? `${score} / ${scorableCount} ${t("scorePoints", "").trim()} (${pct}%)`
+      : t("noScorable");
 
   let grade = "";
-  if (scorableCount === 0) grade = "ทำครบแล้ว";
-  else if (pct >= 80) grade = "ยอดเยี่ยม!";
-  else if (pct >= 60) grade = "ดี!";
-  else if (pct >= 40) grade = "พอใช้";
-  else grade = "ต้องฝึกเพิ่ม";
+  if (scorableCount === 0) grade = t("gradeDone");
+  else if (pct >= 80) grade = t("gradeExcellent");
+  else if (pct >= 60) grade = t("gradeGood");
+  else if (pct >= 40) grade = t("gradeOk");
+  else grade = t("gradeNeedPractice");
   document.getElementById("result-grade").textContent = grade;
 
   const wrongList = document.getElementById("wrong-list");
   wrongList.innerHTML = "";
 
   if (reviewItems.length === 0) {
-    wrongList.innerHTML = "<p class='all-correct'>ตอบถูกทุกข้อ!</p>";
+    wrongList.innerHTML = `<p class='all-correct'>${t("allCorrect")}</p>`;
   }
 
   reviewItems.forEach((item) => {
     const div = document.createElement("div");
     div.className = "wrong-item";
-    const tagMap = { multi: "หลายตัวเลือก", fill: "เติมคำตอบ", single: "ตัวเลือกเดียว" };
-    const tag = tagMap[item.type] ?? "ตัวเลือกเดียว";
+    const tagMap = { multi: t("typeMulti"), fill: t("typeFill"), single: t("typeSingle") };
+    const tag = tagMap[item.type] ?? t("typeSingle");
     div.innerHTML = `
       <p class="wrong-q">${item.question} <span class="type-tag">${tag}</span></p>
-      <p>คำตอบของคุณ: <span class="wrong-text">${item.yourAnswer}</span></p>
-      <p>คำตอบที่ถูก: <span class="correct-text">${item.correctAnswer}</span></p>
+      <p>${t("yourAnswer")} <span class="wrong-text">${item.yourAnswer}</span></p>
+      <p>${t("correctAnswerLabel")} <span class="correct-text">${item.correctAnswer}</span></p>
     `;
     wrongList.appendChild(div);
   });
@@ -56,9 +57,7 @@ function goToStart() {
     answeredCount < questions.length;
 
   if (quizInProgress) {
-    const confirmed = confirm(
-      "คุณยังตอบไม่ครบทุกข้อ ถ้าออกตอนนี้คำตอบที่ทำไว้จะไม่ถูกบันทึก ต้องการออกจากแบบทดสอบหรือไม่?"
-    );
+    const confirmed = confirm(t("confirmExit"));
     if (!confirmed) return;
   }
 

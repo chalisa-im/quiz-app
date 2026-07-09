@@ -3,6 +3,7 @@
 // ── init ──────────────────────────────────────────────
 async function init() {
   showScreen("start-screen");
+  applyStaticI18n();
   try {
     const res = await fetch("questions/index.json");
     if (!res.ok) throw new Error("HTTP " + res.status);
@@ -10,7 +11,7 @@ async function init() {
     renderTermList();
   } catch (err) {
     console.error("Failed to load subject index:", err);
-    showLoadError("โหลดรายวิชาไม่สำเร็จ กรุณาตรวจสอบอินเทอร์เน็ตแล้วลองใหม่อีกครั้ง", init);
+    showLoadError(t("loadIndexError"), init);
   }
 }
 
@@ -29,7 +30,7 @@ async function loadAndRenderCategory(entry) {
     await renderCategoryList(subjectData);
   } catch (err) {
     console.error("Failed to load subject:", entry.file, err);
-    showLoadError("โหลดข้อมูลวิชานี้ไม่สำเร็จ กรุณาลองใหม่อีกครั้ง", () => loadAndRenderCategory(entry));
+    showLoadError(t("loadSubjectError"), () => loadAndRenderCategory(entry));
   }
 }
 
@@ -40,7 +41,7 @@ function showLoadError(message, retryFn) {
   list.innerHTML = `
     <div class="load-error">
       <p class="load-error-text">${message}</p>
-      <button class="btn-primary" id="btn-retry-load">ลองอีกครั้ง</button>
+      <button class="btn-primary" id="btn-retry-load">${t("retry")}</button>
     </div>
   `;
   document.getElementById("btn-retry-load").onclick = retryFn;
@@ -52,7 +53,7 @@ async function saveProgress(category, sc, scorableC, pct) {
     score: sc,
     scorableCount: scorableC,
     pct,
-    date: new Date().toLocaleDateString("th-TH"),
+    date: new Date().toLocaleDateString(uiLang === "th" ? "th-TH" : "ja-JP"),
   });
 }
 
