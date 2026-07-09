@@ -1,7 +1,7 @@
 {
-  "name": "Quiz Time!",
-  "short_name": "Quiz Time",
-  "description": "แอปฝึกทำแบบทดสอบและติดตามคะแนน",
+  "name": "Quiz!",
+  "short_name": "Quiz",
+  "description": "รวมแบบทดสอบ",
   "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",
