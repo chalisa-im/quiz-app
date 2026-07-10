@@ -46,12 +46,12 @@
         {
           "subject": "アジャイル開発",
           "file": "questions/subject-7.json",
-          "count": 80
+          "count": 90
         },
         {
           "subject": "データベース実習3",
           "file": "questions/subject-8.json",
-          "count": 80
+          "count": 100
         },
         {
           "subject": "機械学習実習1",
@@ -61,12 +61,12 @@
         {
           "subject": "ネットワーク実習3",
           "file": "questions/subject-10.json",
-          "count": 50
+          "count": 80
         },
         {
           "subject": "機械学習実習2",
           "file": "questions/subject-11.json",
-          "count": 40
+          "count": 60
         }
       ]
     }
