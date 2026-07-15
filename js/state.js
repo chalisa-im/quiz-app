@@ -14,6 +14,8 @@ const ICONS = {
 
 let allData = null;
 let currentTerm = null;
+let currentSubjectData = null;
+let reviewSubject = null;
 const subjectCache = new Map();
 let questions = [];
 let currentSubject = null;
@@ -29,7 +31,7 @@ let wrongCountsCache = null;
 
 // ── screens ───────────────────────────────────────────
 function showScreen(id) {
-  ["start-screen", "quiz-screen", "result-screen"].forEach((s) => {
+  ["start-screen", "review-screen", "quiz-screen", "result-screen"].forEach((s) => {
     document.getElementById(s).style.display = s === id ? "block" : "none";
   });
 }

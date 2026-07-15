@@ -50,6 +50,7 @@ function renderSubjectList(termEntry) {
 }
 
 async function renderCategoryList(subjectData) {
+  currentSubjectData = subjectData;
   const list = document.getElementById("subject-grid");
   list.innerHTML = "";
   document.querySelector(".start-subtitle").textContent = subjectData.subject;
@@ -83,7 +84,7 @@ async function renderCategoryList(subjectData) {
       <span class="subject-count">${t("questionsCount", wrongQs.length)}</span>
     `;
     wrongBtn.onclick = () =>
-      startQuiz({ category: subjectData.subject + " — " + t("wrongPractice"), questions: wrongQs });
+      renderReviewScreen({ category: subjectData.subject + " — " + t("wrongPractice"), questions: wrongQs });
     list.appendChild(wrongBtn);
   }
 
@@ -97,7 +98,7 @@ async function renderCategoryList(subjectData) {
     </div>
     <span class="subject-count">${t("questionsCount", allQuestions.length)}</span>
   `;
-  allBtn.onclick = () => startQuiz({ category: allKey, questions: allQuestions });
+  allBtn.onclick = () => renderReviewScreen({ category: allKey, questions: allQuestions });
   list.appendChild(allBtn);
 
   const divider = document.createElement("div");
@@ -116,7 +117,7 @@ async function renderCategoryList(subjectData) {
       </div>
       <span class="subject-count">${t("questionsCount", cat.questions.length)}</span>
     `;
-    btn.onclick = () => startQuiz(cat);
+    btn.onclick = () => renderReviewScreen(cat);
     list.appendChild(btn);
   });
 }

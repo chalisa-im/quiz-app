@@ -50,6 +50,8 @@ const STRINGS = {
     retry: "ลองอีกครั้ง",
     loadIndexError: "โหลดรายวิชาไม่สำเร็จ กรุณาตรวจสอบอินเทอร์เน็ตแล้วลองใหม่อีกครั้ง",
     loadSubjectError: "โหลดข้อมูลวิชานี้ไม่สำเร็จ กรุณาลองใหม่อีกครั้ง",
+    backLabel: "กลับ",
+    startQuizNow: "เริ่มทำควิซ",
   },
   ja: {
     chooseTerm: "テストする学期を選んでください",
@@ -96,6 +98,8 @@ const STRINGS = {
     retry: "再試行",
     loadIndexError: "科目一覧の読み込みに失敗しました。インターネット接続を確認してもう一度お試しください。",
     loadSubjectError: "この科目のデータの読み込みに失敗しました。もう一度お試しください。",
+    backLabel: "戻る",
+    startQuizNow: "テストを始める",
   },
 };
 
@@ -116,6 +120,8 @@ function applyStaticI18n() {
     "review-title": t("wrongListTitle"),
     "btn-play-again": t("playAgain"),
     "btn-choose-other-subject": t("chooseOtherSubject"),
+    "btn-back-review-label": t("backLabel"),
+    "btn-start-quiz-label": t("startQuizNow"),
   };
   Object.entries(map).forEach(([id, text]) => {
     const el = document.getElementById(id);
@@ -135,10 +141,13 @@ function toggleLang() {
   // Only screens with no per-question answer state are safe to refresh.
   const quizVisible = document.getElementById("quiz-screen").style.display === "block";
   const resultVisible = document.getElementById("result-screen").style.display === "block";
+  const reviewVisible = document.getElementById("review-screen").style.display === "block";
   if (quizVisible) {
     updateProgress();
   } else if (resultVisible) {
     showResult();
+  } else if (reviewVisible) {
+    renderReviewScreen(reviewSubject);
   } else if (currentTerm) {
     renderSubjectList(currentTerm);
   } else if (allData) {

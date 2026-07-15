@@ -425,6 +425,35 @@ h1.app-title {
 .q-translate-th { font-weight: 700; color: #245A24; }
 .q-translate-ja::after { content: " →"; color: #8FBF8F; }
 
+/* ── Review screen (study sheet before quiz) ── */
+#review-screen { display: none; }
+
+.review-card { padding: 20px 24px; }
+
+.review-answer-box {
+  background: #FDF6E8;
+  border: 1.5px solid #EFD8A0;
+  border-radius: 14px;
+  padding: 12px 16px;
+  margin-top: 4px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-items: baseline;
+}
+
+.review-answer-label {
+  font-size: 0.78rem;
+  font-weight: 800;
+  color: #A87A20;
+}
+
+.review-answer-text {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #6B4E10;
+}
+
 /* ── Question status ── */
 .q-status {
   display: inline-flex;
