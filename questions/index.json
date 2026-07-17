@@ -31,7 +31,7 @@
         {
           "subject": "Webアプリケーション開発1",
           "file": "questions/subject-4.json",
-          "count": 70
+          "count": 120
         },
         {
           "subject": "ネットワーク実習2",
@@ -41,17 +41,17 @@
         {
           "subject": "セキュリティ実習1",
           "file": "questions/subject-6.json",
-          "count": 60
+          "count": 119
         },
         {
           "subject": "アジャイル開発",
           "file": "questions/subject-7.json",
-          "count": 90
+          "count": 120
         },
         {
           "subject": "データベース実習3",
           "file": "questions/subject-8.json",
-          "count": 100
+          "count": 120
         },
         {
           "subject": "機械学習実習1",
@@ -61,12 +61,12 @@
         {
           "subject": "ネットワーク実習3",
           "file": "questions/subject-10.json",
-          "count": 80
+          "count": 120
         },
         {
           "subject": "機械学習実習2",
           "file": "questions/subject-11.json",
-          "count": 70
+          "count": 80
         }
       ]
     }
