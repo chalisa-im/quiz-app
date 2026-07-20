@@ -1,4 +1,4 @@
-const CACHE_NAME = "quiz-app-cache-v13";
+const CACHE_NAME = "quiz-app-cache-v14";
 const PRECACHE_URLS = [
   "./",
   "./index.html",
@@ -35,14 +35,36 @@ self.addEventListener("activate", (event) => {
   self.clients.claim();
 });
 
-// Cache-first for same-origin requests (app shell + per-subject question
-// files), falling back to network and caching the response as it comes in.
-// This means question JSON only needs to be downloaded once per device.
 self.addEventListener("fetch", (event) => {
   const url = new URL(event.request.url);
   if (url.origin !== self.location.origin) return;
   if (event.request.method !== "GET") return;
 
+  const isQuestionData = url.pathname.includes("/questions/") && url.pathname.endsWith(".json");
+
+  if (isQuestionData) {
+    // Network-first for question data (index.json + per-subject files).
+    // Content here changes often as questions get added/translated, so we
+    // always try the network first and only fall back to whatever's cached
+    // if the device is offline. This avoids devices getting stuck forever
+    // on an outdated snapshot of a subject's questions.
+    event.respondWith(
+      fetch(event.request)
+        .then((response) => {
+          if (response && response.status === 200) {
+            const clone = response.clone();
+            caches.open(CACHE_NAME).then((cache) => cache.put(event.request, clone));
+          }
+          return response;
+        })
+        .catch(() => caches.match(event.request))
+    );
+    return;
+  }
+
+  // Cache-first for the app shell (HTML/CSS/JS/icons). These only change
+  // when we ship an update, at which point CACHE_NAME is bumped and the
+  // old cache (with the old shell) is wiped on activate.
   event.respondWith(
     caches.match(event.request).then((cached) => {
       if (cached) return cached;
