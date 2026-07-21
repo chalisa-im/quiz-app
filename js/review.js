@@ -1,8 +1,10 @@
 // ── pre-quiz review screen ─────────────────────────────
-// Shows every question with its correct answer and Thai translation
-// upfront, as a study sheet, before the user starts the timed/scored quiz.
-// Reuses buildTranslationBlock() from answers.js so the translation
-// styling stays identical to the in-quiz feedback box.
+// Shows every question as a study guide before the timed/scored quiz:
+// the reasoning/guideline comes first, with the correct-answer chip and
+// Thai translation as supporting reference underneath -- rather than
+// reading like a blunt answer key. Reuses buildTranslationBlock() from
+// answers.js so the translation styling stays identical to the in-quiz
+// feedback box.
 
 function correctAnswerText(q) {
   const opts = q.options ?? q.choices ?? [];
@@ -30,14 +32,24 @@ function renderReviewScreen(subject) {
   qs.forEach((q, i) => {
     const card = document.createElement("div");
     card.className = "question-card review-card";
+
+    const guidelineHtml = q.hint
+      ? `
+        <div class="q-hint-box review-guideline-box">
+          <div class="review-guideline-label">${t("guidelineLabel")}</div>
+          ${q.hint}
+        </div>
+      `
+      : "";
+
     card.innerHTML = `
       <div class="q-num">${t("questionNum", i + 1)}</div>
       <p class="q-text">${q.question}</p>
+      ${guidelineHtml}
       <div class="review-answer-box">
-        <span class="review-answer-label">${t("correctAnswerLabel")}</span>
+        <span class="review-answer-label">${t("answerSummaryLabel")}</span>
         <span class="review-answer-text">${correctAnswerText(q)}</span>
       </div>
-      ${q.hint ? `<div class="q-hint-box">${q.hint}</div>` : ""}
       ${buildTranslationBlock(q)}
     `;
     fragment.appendChild(card);

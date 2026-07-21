@@ -52,6 +52,8 @@ const STRINGS = {
     loadSubjectError: "โหลดข้อมูลวิชานี้ไม่สำเร็จ กรุณาลองใหม่อีกครั้ง",
     backLabel: "กลับ",
     startQuizNow: "เริ่มทำควิซ",
+    guidelineLabel: "แนวทางคิด",
+    answerSummaryLabel: "สรุปคำตอบ",
   },
   ja: {
     chooseTerm: "テストする学期を選んでください",
@@ -100,6 +102,8 @@ const STRINGS = {
     loadSubjectError: "この科目のデータの読み込みに失敗しました。もう一度お試しください。",
     backLabel: "戻る",
     startQuizNow: "テストを始める",
+    guidelineLabel: "考え方のヒント",
+    answerSummaryLabel: "答えのまとめ",
   },
 };
 
