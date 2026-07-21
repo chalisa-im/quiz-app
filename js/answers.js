@@ -154,8 +154,10 @@ async function answerFill(i) {
 // the question/options stay in Japanese while you're answering (this is
 // real course material), and the Thai translation is only revealed here,
 // afterwards, as a study aid -- so reviewing doesn't mean losing the
-// original Japanese wording.
+// original Japanese wording. Can be disabled entirely via the "คำแปลไทย"
+// toggle on the start screen (translateEnabled, see render-menu.js).
 function buildTranslationBlock(q) {
+  if (!translateEnabled) return "";
   if (!q.question_th) return "";
 
   const optsJa = q.options ?? q.choices ?? [];

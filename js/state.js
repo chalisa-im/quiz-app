@@ -24,6 +24,7 @@ let scorableCount = 0;
 let reviewItems = [];
 let answeredCount = 0;
 let shuffleEnabled = false;
+let translateEnabled = localStorage.getItem("translateEnabled") !== "off";
 
 // In-memory cache so repeated screens (category list, quiz render) don't
 // re-scan the entire localStorage keyspace on every navigation.
