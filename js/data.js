@@ -4,11 +4,6 @@
 async function init() {
   showScreen("start-screen");
   applyStaticI18n();
-  const btnTranslate = document.getElementById("btn-translate");
-  if (btnTranslate) {
-    btnTranslate.textContent = `คำแปลไทย ${translateEnabled ? "ON" : "OFF"}`;
-    btnTranslate.classList.toggle("active", translateEnabled);
-  }
   try {
     const res = await fetch("questions/index.json");
     if (!res.ok) throw new Error("HTTP " + res.status);

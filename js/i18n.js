@@ -148,6 +148,9 @@ function toggleLang() {
   const reviewVisible = document.getElementById("review-screen").style.display === "block";
   if (quizVisible) {
     updateProgress();
+    document.querySelectorAll(".q-translate-box").forEach((el) => {
+      el.style.display = uiLang === "th" ? "" : "none";
+    });
   } else if (resultVisible) {
     showResult();
   } else if (reviewVisible) {

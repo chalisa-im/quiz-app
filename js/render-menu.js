@@ -7,26 +7,6 @@ function toggleShuffle() {
   btn.classList.toggle("active", shuffleEnabled);
 }
 
-function toggleTranslate() {
-  translateEnabled = !translateEnabled;
-  localStorage.setItem("translateEnabled", translateEnabled ? "on" : "off");
-  const btn = document.getElementById("btn-translate");
-  btn.textContent = `คำแปลไทย ${translateEnabled ? "ON" : "OFF"}`;
-  btn.classList.toggle("active", translateEnabled);
-
-  // If a translation block is already visible (mid-quiz feedback or the
-  // review screen), refresh it immediately instead of waiting for the next
-  // navigation so the toggle feels instant.
-  const reviewScreenEl = document.getElementById("review-screen");
-  const reviewVisible = reviewScreenEl && reviewScreenEl.style.display === "block";
-  if (reviewVisible && typeof reviewSubject !== "undefined" && reviewSubject) {
-    renderReviewScreen(reviewSubject);
-  }
-  document.querySelectorAll(".q-translate-box").forEach((el) => {
-    el.style.display = translateEnabled ? "" : "none";
-  });
-}
-
 function renderTermList() {
   currentTerm = null;
   const list = document.getElementById("subject-grid");
