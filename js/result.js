@@ -4,7 +4,8 @@ async function showResult() {
   const pct =
     scorableCount > 0 ? Math.max(0, Math.round((score / scorableCount) * 100)) : 0;
 
-  if (scorableCount > 0) await saveProgress(currentSubject.category, score, scorableCount, pct);
+  if (scorableCount > 0)
+    await saveProgress(currentSubject.progressKey ?? currentSubject.category, score, scorableCount, pct);
 
   showScreen("result-screen");
   applyStaticI18n();

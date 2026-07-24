@@ -65,7 +65,7 @@ async function renderCategoryList(subjectData) {
   const [counts, allProg, ...catProgs] = await Promise.all([
     loadAllWrongCounts(),
     loadProgress(allKey),
-    ...subjectData.categories.map((cat) => loadProgress(cat.category)),
+    ...subjectData.categories.map((cat) => loadProgress(subjectData.subject + "：" + cat.category)),
   ]);
 
   const allSubjectQs = subjectData.categories.flatMap((c) => c.questions);
@@ -83,8 +83,9 @@ async function renderCategoryList(subjectData) {
       </div>
       <span class="subject-count">${t("questionsCount", wrongQs.length)}</span>
     `;
+    const wrongKey = subjectData.subject + " — " + t("wrongPractice");
     wrongBtn.onclick = () =>
-      renderReviewScreen({ category: subjectData.subject + " — " + t("wrongPractice"), questions: wrongQs });
+      renderReviewScreen({ category: wrongKey, progressKey: wrongKey, questions: wrongQs });
     list.appendChild(wrongBtn);
   }
 
@@ -98,7 +99,7 @@ async function renderCategoryList(subjectData) {
     </div>
     <span class="subject-count">${t("questionsCount", allQuestions.length)}</span>
   `;
-  allBtn.onclick = () => renderReviewScreen({ category: allKey, questions: allQuestions });
+  allBtn.onclick = () => renderReviewScreen({ category: allKey, progressKey: allKey, questions: allQuestions });
   list.appendChild(allBtn);
 
   const divider = document.createElement("div");
@@ -117,7 +118,8 @@ async function renderCategoryList(subjectData) {
       </div>
       <span class="subject-count">${t("questionsCount", cat.questions.length)}</span>
     `;
-    btn.onclick = () => renderReviewScreen(cat);
+    btn.onclick = () =>
+      renderReviewScreen({ ...cat, progressKey: subjectData.subject + "：" + cat.category });
     list.appendChild(btn);
   });
 }

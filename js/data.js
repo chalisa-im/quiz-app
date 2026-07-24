@@ -48,6 +48,10 @@ function showLoadError(message, retryFn) {
 }
 
 // ── progress storage ──────────────────────────────────
+// Keyed by a progressKey that includes the subject name, not just the
+// round/category label. Round labels like "第4回" repeat across every
+// subject, so keying by category name alone made every subject show the
+// same saved score for a round it had never been attempted.
 async function saveProgress(category, sc, scorableC, pct) {
   await window.storage.set("progress:" + category, {
     score: sc,
